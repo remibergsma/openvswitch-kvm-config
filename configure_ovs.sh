@@ -91,8 +91,11 @@ fi
 if [ -f /etc/os-release ]; then
   source /etc/os-release
   echo "Detected OS: $ID"
+elif [ -f /etc/redhat-release ]; then
+  ID="centos"
+  echo "Detected OS: $ID"
 else
-  echo "Error: Could not detect OS: Only tested on Ubuntu 14.04/14.10/15.04 and CentOS 7."
+  echo "Error: Could not detect OS: Only tested on Ubuntu 14.04/14.10/15.04 and CentOS 6 and 7."
   exit;
 fi
 
