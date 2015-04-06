@@ -1,4 +1,4 @@
-# openvswitch-kvm-config
+# Generate Open vSwitch config for KVM/CloudStack
 This is a script to setup Open vSwitch networking for a KVM hypervisor running on Ubuntu (14.04/14.10/15.04) or CentOS 6 and 7.
 
 It was used in a lab where we compared different OS'es and had to setup Open vSwitch networking a lot of times.
