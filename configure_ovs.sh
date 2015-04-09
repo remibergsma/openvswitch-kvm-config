@@ -103,6 +103,8 @@ echo "Do you want to write network configuration? (y/n)"
 read netans
 if [ "$netans" = y ]; then
   echo "You said yes."
+  BRMAC=$(cat /sys/class/net/$(ls /sys/class/net | grep -E '^em|^eno|^eth|^p2' | tr '\n' ' ' | awk {'print $1'})/address)
+  echo "Mac address of first NIC is $BRMAC"
  
 case $ID in
     "ubuntu")
@@ -116,6 +118,7 @@ auto trans0
 allow-ovs trans0
 iface trans0 inet dhcp
    ovs_type OVSIntPort
+   hwaddress ether $BRMAC
 " > /etc/network/interfaces
  
 for i in $IFACES
@@ -158,6 +161,7 @@ DEVICETYPE=ovs
 TYPE=OVSIntPort
 BOOTPROTO=dhcp
 HOTPLUG=no
+MACADDR=$BRMAC
 " > /etc/sysconfig/network-scripts/ifcfg-trans0
 
 # Config bond0 
